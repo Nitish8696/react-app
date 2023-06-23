@@ -91,44 +91,43 @@ const Navbar = () => {
       }
     return (
         <>
-            <nav className='nav bg-[#131921]'>
+            <nav className='nav bg-[#131a22] w-full overflow-hidden'>
                 <div className='nav-center'>
-                    <div className='categories'>
+                    <div className='categories py-5'>
                         {categories.map((category) => {
-                            return <Link key={category.id} to={`/category/${category.category}`}><button>{capitalizeFirstLetter(category.category)}</button></Link>
+                            return <Link key={category.id} to={`/category/${category.category}`}><button className='font-serif'>{capitalizeFirstLetter(category.category)}</button></Link>
                         })}
                     </div>
                     <div className='toggle pl-5' onClick={() => setMobNav(true)} >
                         <FaBars className='text-white'/>
                     </div>
-                    {mobNav && <motion.div className='categories-mob' initial={{ x: -500, opacity: 0 }} animate={{ x: 0, opacity: 1 }}
+                    {mobNav && <motion.div className='categories-mob pl-4 pt-4' initial={{ x: -500, opacity: 0 }} animate={{ x: 0, opacity: 1 }}
                         transition={{ duration: .5 }}
                     >
                         <div className='w-full mob-sidebar'>
-                            <Link to='/' className=''><button>Home</button></Link>
-                            <Link to='/sellproduct' className=''><button>Sell</button></Link>
-                            <hr />
                             <div className='flex gap-1 items-center'>
-                                <MdCategory className='text-xl' />
-                                <p className='text-xl'>Categories</p>
+                                <MdCategory className='text-xl font-semibold' />
+                                <p className='text-xl font-semibold'>Categories</p>
                             </div>
                             {categories.map((category) => {
                                 return <Link key={category.id} to={`/category/${category.category}`}
-                                    onClick={() => setMobNav(false)}
+                                    onClick={() => setMobNav(false)} className='hover:bg-blue-300 hover:pl-2 duration-200 group'
                                 >
-                                    <motion.button whileHover={{ scale: 1.1 }}
+                                    <motion.button className='group-hover:text-white' whileHover={{ scale: 1.1 }}
                                         whileTap={{ scale: 0.95 }}>{category.category}</motion.button></Link>
                             })}
                             <hr />
-                            {!user && <Link to='/signup' className=''><button>Register</button></Link>}
-                            {!user && <Link to='/login' className=''><button>Login</button></Link>}
+                            <Link to='/' className='hover:bg-blue-300 hover:pl-2 duration-200 group' onClick={() => setMobNav(false)}><button className='group-hover:text-white'>Home</button></Link>
+                            <Link to='/sellproduct' className='hover:bg-blue-300 hover:pl-2 duration-200 group' onClick={() => setMobNav(false)}><button className='group-hover:text-white'>Sell</button></Link>
+                            {!user && <Link to='/signup' className='hover:bg-blue-300 hover:pl-2 duration-200 group' onClick={() => setMobNav(false)}><button className='group-hover:text-white'>Register</button></Link>}
+                            {!user && <Link to='/login' className='hover:bg-blue-300 hover:pl-2 duration-200 group' onClick={() => setMobNav(false)}><button className='group-hover:text-white'>Login</button></Link>}
                             <hr />
-                            <div className='mob-profile'>
+                            <div className='mob-profile items-center group  hover:bg-blue-300 hover:pl-2 duration-200' >
                                 <div>
-                                    <FaUserCircle className='profile-icon' />
+                                    <FaUserCircle className='profile-icon hover:text-white group-hover:text-white' />
                                 </div>
                                 <div>
-                                    <Link to='/userprofile'>
+                                    <Link to='/userprofile' className=' hover:text-white group-hover:text-white' onClick={() => setMobNav(false)}>
                                         Profile
                                     </Link>
                                 </div>
@@ -137,13 +136,13 @@ const Navbar = () => {
                         </div>
                         <RxCrossCircled className='absolute top-4 right-1 text-xl cursor-pointer' onClick={() => setMobNav(false)} />
                     </motion.div>}
-                    <form className="flex items-center w-96 ml-2 box-content rounded" style={divStyle} ref={divRef}>
+                    <form className="flex items-center w-[500px] ml-2 box-content rounded-sm" style={divStyle} ref={divRef}>
                         <AiOutlineSearch className='search-icon box-content cursor-pointer' />
-                        <input type="text" className='search-input outline-none p-1' value={query} onChange={(e) => setQuery(e.target.value)}
+                        <input type="text" className='search-input rounded-sm outline-none p-1' value={query} onChange={(e) => setQuery(e.target.value)}
                             placeholder='Search for products,brand'
                             style={inputStyle} onFocus={() => setToggle(true)} />
                     </form>
-                    <div className='flex gap-5 px-2'>
+                    <div className='flex gap-2 sm:gap-5 px-2'>
                         <Link to='/' className='py-5 home'><button>Home</button></Link>
                         <Link to='/sellproduct' className='py-5 sell'><button>Sell</button></Link>
                         {!user && <Link to='/signup' className='py-5 register'><button>Register</button></Link>}
@@ -160,7 +159,7 @@ const Navbar = () => {
                         <Link to='/wishlist' onClick={handleClick} className='py-5'>
                             <AiOutlineHeart className='text-white text-2xl' />
                         </Link>
-                        <Link to='/cart' className='cart relative py-5 pr-5'>
+                        <Link to='/cart' className='cart relative py-5 pr-1'>
                             <div className="cart-btn">
                                 <BsHandbag className='cart-icon' />
                                 <span className='cart-icon-css rounded-full hover:scale-95'>{cart.length}</span>

@@ -1,35 +1,73 @@
 import React from 'react'
-import video from '../assets/video.webm'
-import Video from '../assets/videomob.webm'
-import './Banner.scss'
+import Slider from "react-slick";
+import BannerOne from '../assets/bannerImgOne.jpg'
+import BannerTwo from '../assets/bannerImgTwo.jpg'
+import BannerThree from '../assets/bannerImgThree.jpg'
+import BannerFour from '../assets/bannerImgFour.jpg'
+import BannerFive from '../assets/bannerImgFive.jpg'
+
 
 const Banner = () => {
+  var settings = {
+    dots: true,
+    infinite: true,
+    autoplay : true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    appendDots: dots => (
+      <div
+        style={{
+          position: 'absolute',
+          top: "80%",
+          left: '45%',
+          width: '210px',
+          transform: 'translate(-50%,-50%)'
+        }}
+      >
+        <ul style={{ width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between" }}> {dots} </ul>
+      </div>
+    ),
+    customPaging: i => (
+      <div
+        style={{
+          width: "30px",
+          height : "30px",
+          borderRadius : '50%',
+          display : "flex",
+          alignItems : "center",
+          justifyContent : "center",
+          color : "white",
+          background : "#131921",
+          padding : "8px 0",
+          cursor : "pointer",
+          border : '1px solid #f3a847'
+        }}
+      >
+        {i + 1}
+      </div>
+    ),
+  };
+
   return (
-    <div className='banner'>
-      <video
-        src={video}
-        type="video/mp4"
-        loop
-        controls={false}
-        muted
-        autoPlay
-        className="w-full h-full object-cover z-1 video-des"
-      />
-      <video
-        src={Video}
-        type="video/mp4"
-        loop
-        controls={false}
-        muted
-        autoPlay
-        className="w-full h-full object-cover z-1 video-mob"
-      />
-      <div className='banner-details'>
-        <p className='text-white z-10 text-5xl font-bold mb-5 b-heading'>Galaxy S23 Series</p>
-        <p className='text-white mb-5 b-sub-heading'>Own Epic Now at just $40/month <br />
-          avail benefits up to $400
-        </p>
-        <button className='text-black bg-white px-5 py-2 rounded-full text-sm'>Buy Now</button>
+    <div className='w-full overflow-hidden h-[250px] sm:h-auto bg-gray-50'>
+      <div className='w-full h-full relative'>
+        <Slider {...settings}>
+          <div className='w-full h-full'>
+            <img src={BannerTwo} className='w-full h-[250px] object-cover sm:h-full' alt="" />
+          </div>
+          <div>
+            <img src={BannerOne} className='w-full h-[250px] object-cover sm:h-full' alt="" />
+          </div>
+          <div>
+            <img src={BannerThree} className='w-full h-[250px] object-cover sm:h-full' alt="" />
+          </div>
+          <div>
+            <img src={BannerFour} className='w-full h-[250px] object-cover sm:h-full' alt="" />
+          </div>
+          <div>
+            <img src={BannerFive} className='w-full h-[250px] object-cover sm:h-full' alt="" />
+          </div>
+        </Slider>
       </div>
     </div>
   );
