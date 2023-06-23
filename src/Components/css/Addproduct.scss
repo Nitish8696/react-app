@@ -1,0 +1,27 @@
+.addproduct{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 50px);
+
+    .pro-details{
+        border: 1px solid lightgray;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        padding: 10px;
+        gap: 10px;
+
+        input{
+           padding: 5px;
+        }
+        input::placeholder{
+            font-size: 14px;
+        }
+        textarea::placeholder{
+            font-size: 14px;
+        }
+    }
+}

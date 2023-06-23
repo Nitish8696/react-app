@@ -1,0 +1,43 @@
+.checkout {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px auto;
+
+    .details {
+        width: 70%;
+        padding: 0 4rem;
+        padding-left: 6rem;
+
+        @media screen and (max-width : 992px) {
+            width: 100%;
+            padding-left: 4rem;
+        }
+
+        .add {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .summry {
+        width: 30%;
+
+        @media screen and (max-width : 992px) {
+            width: 100%;
+            margin: 20px 0px;
+            padding: 0 4rem;
+        }
+
+        div {
+            padding: 1rem;
+            border-radius: 10px;
+            width: 80%;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.38);
+
+            .order{
+                margin-bottom: 20px;
+                font-weight: 600;
+            }
+        }
+    }
+}

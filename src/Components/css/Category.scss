@@ -1,0 +1,36 @@
+.category {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    overflow-x: hidden;
+    height: 100%;
+
+    .cat-head {
+        p {
+            @media screen and (max-width:992px) {
+                font-size: 13px;
+            }
+        }
+    }
+
+    .cat-details {
+
+        .cat-head {
+            @media screen and (max-width:992px) {
+                padding-left: 10px;
+            }
+        }
+
+        .cat-fil {
+              @media screen and (max-width:992px) {
+                padding-right: 10px;
+            }
+            .select{
+                @media screen and (max-width:992px) {
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+}

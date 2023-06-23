@@ -1,0 +1,50 @@
+.banner{
+    flex: 1;
+    height: calc(100vh - 0px);
+    position: relative;
+    overflow: hidden;
+    video{
+        width: 100%;
+        height: 100%;   
+        object-fit: cover;
+    }
+    .video-des{
+        @media screen and (max-width : 992px) {
+            display:none
+        }
+    }
+    .video-mob{
+        @media screen and (min-width : 993px) {
+            display: none;
+        }
+    }
+    .banner-details{
+        position: absolute;
+        top: 33%;
+        left: 6%;
+        
+        @media screen and (max-width : 992px) {
+            // display: flex;
+            top: 33%;
+            left: 35%;
+            text-align: center;
+            .b-heading{
+               font-size: 40px;
+            }
+            transform: translateX(-70px);
+        }
+        @media screen and (max-width : 420px) {
+            // display: flex;
+            top: 33%;
+            left: 0%;
+            text-align: center;
+            .b-heading{
+               font-size: 30px;
+            }
+            .b-sub-heading{
+                font-size: 15px;
+            }
+            transform: translateX(50px);
+        }
+    }
+}

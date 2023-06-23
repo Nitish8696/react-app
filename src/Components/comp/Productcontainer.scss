@@ -1,0 +1,41 @@
+.pro-de-cat {
+    @media screen and (max-width:414px) {
+        width: 47.50%;
+    }
+    @media screen and (min-width:415px) and (max-width:992px) {
+        width: 31%;
+    }
+    .pro-img {
+        width: 250px;
+        height: auto;
+    }
+
+    .pro-details {
+        .pr-title{
+            @media screen and (max-width:992px) {
+                font-size: 15px;
+            }   
+        }     
+
+        .prices {
+            .mrp {
+                @media screen and (max-width:992px) {
+                    font-size: 15px;
+                }
+                span {
+                    text-decoration: line-through solid rgb(145, 145, 145) 2px;
+                }
+            }
+            .saleprice{
+                @media screen and (max-width:992px) {
+                    font-size: 15px;
+                } 
+            }
+            .you-save{
+                @media screen and (max-width:992px) {
+                    font-size: 15px;
+                } 
+            }
+        }
+    }
+}
