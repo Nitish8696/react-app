@@ -6,7 +6,6 @@ import { getCart, getWish } from '../features/cartSlice'
 import { collection, query, doc, onSnapshot, getDoc, QuerySnapshot, where, addDoc } from 'firebase/firestore'
 import { db } from '../FirebaseConfigs/FirebaseConfig'
 import { useDispatch } from 'react-redux'
-import './css/Singleproduct.scss'
 import { FaPlus, FaMinus } from 'react-icons/fa'
 import Spinner from './Spinner'
 
@@ -21,6 +20,7 @@ const Singleproduct = () => {
     const [product,setProducts] = useState({})
     const [loading,setLoading] = useState(false)
     const { category } = useSelector((store) => store.fetch)
+    console.log(category);
 
     const getProducts = async (id) => {
         setLoading(true)
@@ -37,16 +37,15 @@ const Singleproduct = () => {
 
 
     let mrp = Math.floor(parseInt(product?.price));
-    mrp = mrp + overalltax * mrp + overcommission * mrp + extraforfun * mrp
+    mrp = Math.floor(mrp + overalltax * mrp + overcommission * mrp + extraforfun * mrp)
     const saleprice = Math.floor(mrp - extraforfun * mrp)
-
-    const addtoWishList = () => {
-        dispatch(getWish({ ...product, isWishlistAdded: true }))
-    }
-
 
     const addtocart = () => {
         dispatch(getCart({ ...product, quantity }))
+    }
+
+    const addtoWishList = () => {
+        dispatch(getWish({ ...product, isWishlistAdded: true }))
     }
 
     const decrease = () =>{
@@ -63,39 +62,40 @@ const Singleproduct = () => {
 
     const isItemInWishlist = wishList.some((item) => item.id === id)
 
+
     if (loading) {
         return <Spinner/>
     }
     else {
         return (
             <>
-                {product && <div className='single'>
-                    <div className='single-product-img-con'>
-                        <img src={product.image} className='sin-pro-img shadow-md' alt="" />
+                {product && <div className='flex flex-col items-center justify-center sm:flex-row'>
+                    <div className='w-full flex items-center justify-center mt-10 mb-10'>
+                        <img src={product.image} className='w-[250px] h-auto' alt="" />
                     </div>
-                    <div className='single-product-details-con flex flex-col gap-5'>
-                        <div className="sin-pro-data">
-                            <p className="sin-pro-head text-xl font-medium">{product.title}</p>
+                    <div className='p-2 flex flex-col gap-5 w-full'>
+                        <div>
+                            <p className="text-lg font-medium">{product.title}</p>
                         </div>
-                        <div className="sin-pro-price">
-                            <p className='sin-pro-mrp font-medium'>MRP Rs: <span>{mrp}</span></p>
-                            <p className='sin-pro-saleprice font-medium'>Discount Price Rs: <span>{saleprice}</span></p>
-                            <p className='sin-pro-yousave font-medium'>You Save Rs: <span>{mrp - saleprice}</span></p>
+                        <div>
+                            <p className='font-medium'>MRP Rs: <span>{mrp}</span></p>
+                            <p className='font-medium'>Discount Price Rs: <span>{saleprice}</span></p>
+                            <p className='font-medium'>You Save Rs: <span>{mrp - saleprice}</span></p>
                         </div>
-                        <p className="sin-pro-des">{product.description}</p>
-                        <div className="row-cont flex flex-col gap-2">
-                            <div className="warranty-replacement">
+                        <p className="text-sm">{product.description}</p>
+                        <div className="flex flex-col gap-2 justify-center">
+                            <div className="flex gap-2 pl-3">
                                 <button onClick={decrease}><FaMinus/></button>
-                                <span>{quantity}</span>
+                                <span className='font-semibold text-lg'>{quantity}</span>
                                 <button onClick={increase}><FaPlus/></button>
                             </div>
-                            <button className={isItemInWishlist ? `wish w-1/3 px-3 py-2 rounded-full flex items-center justify-center bg-black`
-                                : `wish w-1/3 px-3 py-2 rounded-full flex items-center border-solid border border-gray-500 hover:border-black justify-center`} onClick={addtoWishList}>
+                            <button className={isItemInWishlist ? `w-full sm:w-[50%] px-3 py-3 rounded-full flex items-center justify-center bg-black`
+                                : `w-full px-3 py-3 rounded-full flex items-center border-solid border border-gray-500 hover:border-black justify-center`} onClick={addtoWishList}>
                                 {isItemInWishlist ? <p className='text-white'>WishListed</p> : <p>Wishlist</p>}
-                                {isItemInWishlist ? <AiFillHeart className='heart-icon text-xl mx-1' /> : <AiOutlineHeart className='text-black text-xl mx-1' />}
+                                {isItemInWishlist ? <AiFillHeart className='heart-icon text-xl mx-1 text-red-700' /> : <AiOutlineHeart className='text-black text-xl mx-1' />}
                             </button>
-                            <div className=" wish w-1/3 buy-cart flex flex-col gap-1">
-                                <Link to='/cart'><button className="btn w-full text-white bg-black hover:bg-gray-500 md-shadow px-3 py-2 rounded-full" onClick={addtocart}>Add To Cart</button></Link>
+                            <div className="w-full buy-cart flex flex-col gap-1">
+                                <Link to='/cart'><button className="w-full sm:w-[50%] text-white bg-black hover:bg-gray-500 md-shadow px-3 py-3 rounded-full" onClick={addtocart}>Add To Cart</button></Link>
                             </div>
                         </div>
                     </div>

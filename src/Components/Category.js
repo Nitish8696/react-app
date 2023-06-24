@@ -54,7 +54,7 @@ const Category = () => {
                 </form>
             </div>
             <hr />
-            <div className='products max-w-screen-2xl mx-auto grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10 px-2'>
+            <div className='products max-w-screen-2xl mx-auto grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 px-2'>
                 {filtered_products?.map((product) => {
                     return <Productcontainer key={product.id} product={product} />
                 })}
