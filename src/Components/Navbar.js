@@ -40,7 +40,6 @@ const Navbar = () => {
 
     const [toggle, setToggle] = useState(false)
     const [mobNav, setMobNav] = useState(false)
-    const [isHovered, setIsHovered] = useState(false);
     const [query, setQuery] = useState('');
 
     useEffect(() => {
@@ -56,10 +55,6 @@ const Navbar = () => {
             document.removeEventListener('click', handleDocumentClick);
         };
     }, []);
-
-    const handleIconHover = () => {
-        setIsHovered(!isHovered);
-    };
 
     const handleLogout = () => {
         signOut(auth).then(() => {
@@ -88,7 +83,7 @@ const Navbar = () => {
     }
     function capitalizeFirstLetter(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
-      }
+    }
     return (
         <>
             <nav className='nav bg-[#131a22] w-full overflow-hidden'>
@@ -99,7 +94,7 @@ const Navbar = () => {
                         })}
                     </div>
                     <div className='toggle pl-5' onClick={() => setMobNav(true)} >
-                        <FaBars className='text-white'/>
+                        <FaBars className='text-white' />
                     </div>
                     {mobNav && <motion.div className='categories-mob pl-4 pt-4' initial={{ x: -500, opacity: 0 }} animate={{ x: 0, opacity: 1 }}
                         transition={{ duration: .5 }}
@@ -147,14 +142,11 @@ const Navbar = () => {
                         <Link to='/sellproduct' className='py-5 sell'><button>Sell</button></Link>
                         {!user && <Link to='/signup' className='py-5 register'><button>Register</button></Link>}
                         {!user && <Link to='/login' className='py-5 login'><button>Login</button></Link>}
-                        <div className="icon-container py-5 hover:border-b-4 hover:border-solid hover:border-red-500" onMouseEnter={handleIconHover} onMouseLeave={handleIconHover}>
-                            <FaUserCircle className='profile-icon' />
-                            {isHovered && <div className='icon-dropdown p-2 flex flex-col gap-1 drop-shadow-md'>
-                                <Link to='/userprofile'>
-                                    Profile
-                                </Link>
-                                <Link onClick={handleLogout}>Logout</Link>
-                            </div>}
+                        <div className="py-5 gap-5 hidden sm:flex">
+                            <Link onClick={handleLogout} className='text-white'>Logout</Link>
+                            <Link to='/userprofile'>
+                                <FaUserCircle className='profile-icon' />
+                            </Link>
                         </div>
                         <Link to='/wishlist' onClick={handleClick} className='py-5'>
                             <AiOutlineHeart className='text-white text-2xl' />

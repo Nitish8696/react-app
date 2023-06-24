@@ -44,7 +44,7 @@ const filterSlice = createSlice({
             let tempProduct = [...state.products]
             if (state.query) {
                 tempProduct = tempProduct.filter((product)=>{
-                   return product.title.toLowerCase().startsWith(state.query)
+                   return product.title.toUpperCase().startsWith(state.query.toUpperCase())
                 })
                 state.filtered_products = tempProduct
             }

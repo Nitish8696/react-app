@@ -90,7 +90,7 @@ const Singleproduct = () => {
                                 <button onClick={increase}><FaPlus/></button>
                             </div>
                             <button className={isItemInWishlist ? `w-full sm:w-[50%] px-3 py-3 rounded-full flex items-center justify-center bg-black`
-                                : `w-full px-3 py-3 rounded-full flex items-center border-solid border border-gray-500 hover:border-black justify-center`} onClick={addtoWishList}>
+                                : `w-full px-3 py-3 sm:w-[50%] rounded-full flex items-center border-solid border border-gray-500 hover:border-black justify-center`} onClick={addtoWishList}>
                                 {isItemInWishlist ? <p className='text-white'>WishListed</p> : <p>Wishlist</p>}
                                 {isItemInWishlist ? <AiFillHeart className='heart-icon text-xl mx-1 text-red-700' /> : <AiOutlineHeart className='text-black text-xl mx-1' />}
                             </button>

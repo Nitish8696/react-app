@@ -34,7 +34,7 @@ const Products = () => {
           </div>
           <div className='sm:px-4'>
             <div className='flex flex-col items-center justify-between'>
-              <h2 className='tracking-wide text-md text-[#37475A] text-center font-medium'>{item.title.substring(0, 20)}</h2>
+              <h2 className='tracking-wide text-md text-[#37475A] text-center font-medium'>{item.title.substring(0, 25)}</h2>
               <p className='text-sm text-gray-600'>Price : ₹ {item.price}</p>
             </div>
             <Link to={`/product/${item.id}`}><button className='w-full p-1 bg-black hover:bg-black/75 text-white rounded-md text-sm

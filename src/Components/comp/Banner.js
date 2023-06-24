@@ -8,6 +8,7 @@ import BannerFive from '../assets/bannerImgFive.jpg'
 
 
 const Banner = () => {
+  
   var settings = {
     dots: true,
     infinite: true,
@@ -49,9 +50,9 @@ const Banner = () => {
   };
 
   return (
-    <div className='w-full overflow-hidden h-[250px] sm:h-auto bg-gray-50'>
+    <div className='w-full overflow-hidden z-10 h-[250px] sm:h-auto bg-gray-50'>
       <div className='w-full h-full relative'>
-        <Slider {...settings}>
+        <Slider {...settings} style={{zIndex:1}}>
           <div className='w-full h-full'>
             <img src={BannerTwo} className='w-full h-[250px] object-cover sm:h-full' alt="" />
           </div>
