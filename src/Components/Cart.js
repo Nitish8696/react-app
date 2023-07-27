@@ -11,6 +11,8 @@ const Cart = () => {
   const { user } = useSelector((store) => store.user)
   const dispatch = useDispatch()
 
+  console.log(cart);
+
   const total = cart.reduce((accumulator, currentValue) => {
     return accumulator + parseInt(currentValue.price*currentValue.quantity);
   }, 0)

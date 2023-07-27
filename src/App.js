@@ -13,6 +13,7 @@ import Singleproduct from './Components/Singleproduct';
 import Wishlist from './Components/wishlist/Wishlist';
 import Checkout from './Components/Checkout';
 import Footer from './Components/footer/Footer';
+import System from './Components/System';
 
 function App() {
   const Layout = () => {
@@ -64,10 +65,13 @@ function App() {
           element: <Addproduct />
         },
         {
+          path : '/system',
+          element : <System/>
+        },
+        {
           path: '*',
           element: <PgFOF />
         },
-
       ]
     },
     {

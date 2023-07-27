@@ -4,9 +4,11 @@ import { storage, auth, db } from '../FirebaseConfigs/FirebaseConfig'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { getCategory } from '../features/fetchSlice'
+import Productshimmer from './Productshimmer'
 
 const Products = () => {
   const [product, setProduct] = useState([])
+  const [loading,setLoading] = useState(true)
   const dispatch = useDispatch()
   useEffect(() => {
     const getProducts = () => {
@@ -17,6 +19,7 @@ const Products = () => {
           productsArray.push({ ...doc.data(), id: doc.id })
         })
         setProduct(productsArray)
+        setLoading(false)
       })
     }
     getProducts()
@@ -24,6 +27,12 @@ const Products = () => {
   const all = () =>{
     dispatch(getCategory('all'))
   }
+  if (loading) {
+    return (
+      <Productshimmer/>
+    )
+  }
+  else{
   return (
     <div className='max-w-screen-2xl mx-auto grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-5 px-4 bg-gray-50 py-4 mt-[-40px] sm:mt-[-100px]'>
       {product?.map((item) => {
@@ -43,6 +52,6 @@ const Products = () => {
         </div>
       })}
     </div>
-  )
+  )}
 }
 export default Products
